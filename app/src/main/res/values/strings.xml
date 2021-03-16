@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="tv_title">TV Show</string>
+
+    <string name="movie_title">Movie</string>
+
+    <string name="placeholder_title">Title Placeholder</string>
+    <string name="placeholder_duration">2h 14m</string>
+    <string name="placeholder_date">2019/12/31</string>
+    <string name="content_loading">Loading, please wait...</string>
+</resources>
