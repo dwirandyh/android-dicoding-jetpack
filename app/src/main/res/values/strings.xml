@@ -4,8 +4,12 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string name="tv_title">TV Show</string>
+    <string name="tv_detail_title">Tv Show Detail Page</string>
+    <string name="tv_detail_overview">Overview</string>
 
     <string name="movie_title">Movie</string>
+    <string name="movie_detail_title">Movie Detail Page</string>
+    <string name="movie_detail_overview">Overview</string>
 
     <string name="placeholder_title">Title Placeholder</string>
     <string name="placeholder_duration">2h 14m</string>

@@ -7,12 +7,42 @@
 
     <fragment
         android:id="@+id/tvFragment"
-        android:name="com.dwirandyh.jetpack.tv.presentation.view.TvShowFragment"
+        android:name="com.dwirandyh.jetpack.ui.tv.tvshowlist.presentation.view.TvShowFragment"
         android:label="@string/tv_title"
-        tools:layout="@layout/fragment_tv_show" />
+        tools:layout="@layout/fragment_tv_show" >
+        <action
+            android:id="@+id/action_tvFragment_to_tvShowDetailFragment"
+            app:destination="@id/tvShowDetailFragment" />
+    </fragment>
+
     <fragment
         android:id="@+id/movieFragment"
-        android:name="com.dwirandyh.jetpack.movie.presentation.view.MovieFragment"
+        android:name="com.dwirandyh.jetpack.ui.movie.movielist.presentation.view.MovieFragment"
         android:label="@string/movie_title"
-        tools:layout="@layout/fragment_movie" />
+        tools:layout="@layout/fragment_movie" >
+        <action
+            android:id="@+id/action_movieFragment_to_movieDetailFragment"
+            app:destination="@id/movieDetailFragment">
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/movieDetailFragment"
+        android:name="com.dwirandyh.jetpack.ui.movie.moviedetail.presentation.view.MovieDetailFragment"
+        android:label="@string/movie_detail_title"
+        tools:layout="@layout/fragment_movie_detail">
+        <argument
+            android:name="id"
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/tvShowDetailFragment"
+        android:name="com.dwirandyh.jetpack.ui.tv.tvshowdetail.presentation.view.TvShowDetailFragment"
+        android:label="@string/tv_detail_title"
+        tools:layout="@layout/fragment_tv_show_detail">
+        <argument
+            android:name="id"
+            app:argType="string" />
+    </fragment>
 </navigation>

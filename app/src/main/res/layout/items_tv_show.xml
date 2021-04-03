@@ -3,26 +3,24 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     >
-
     <data>
         <import type="com.dwirandyh.jetpack.external.BindingAdapters"/>
         <variable
-            name="movie"
-            type="com.dwirandyh.jetpack.domain.model.MovieModel" />
-
+            name="tvShow"
+            type="com.dwirandyh.jetpack.domain.model.TvShowModel" />
         <variable
             name="listener"
-            type="com.dwirandyh.jetpack.ui.movie.movielist.presentation.view.MovieItemListener" />
+            type="com.dwirandyh.jetpack.ui.tv.tvshowlist.presentation.view.TvShowItemListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="@{() -> listener.openDetail(movie.id)}"
+        android:onClick="@{() -> listener.openDetail(tvShow.id)}"
         android:padding="@dimen/small">
 
         <ImageView
-            app:url="@{movie.posterUrl}"
+            app:url="@{tvShow.posterUrl}"
             android:id="@+id/img_poster"
             android:layout_width="120dp"
             android:layout_height="120dp"
@@ -34,7 +32,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/small"
-            android:text="@{movie.title}"
+            android:text="@{tvShow.title}"
             android:textSize="@dimen/text16"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -42,7 +40,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <RatingBar
-            app:rating="@{movie.rating}"
+            app:rating="@{tvShow.rating}"
             android:id="@+id/rating"
             style="@style/Widget.AppCompat.RatingBar.Small"
             android:layout_width="wrap_content"
@@ -56,7 +54,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/small"
-            android:text="@{String.format(`%.1f`, movie.rating)}"
+            android:text="@{String.format(`%.1f`, tvShow.rating)}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/rating"
             app:layout_constraintTop_toTopOf="@+id/rating" />
@@ -85,7 +83,7 @@
                 android:id="@+id/tv_duration"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{movie.duration}" />
+                android:text="@{tvShow.duration}" />
 
         </LinearLayout>
 
@@ -109,7 +107,7 @@
                 android:layout_height="wrap_content" />
 
             <TextView
-                app:date="@{movie.releaseDate}"
+                app:date="@{tvShow.releaseDate}"
                 android:id="@+id/tv_released_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

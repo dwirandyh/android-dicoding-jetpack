@@ -3,12 +3,40 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".tv.presentation.view.TvShowFragment">
+    tools:context="com.dwirandyh.jetpack.ui.movie.movielist.presentation.view.MovieFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/tv_recycle_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="TV Show Fragment" />
+        />
+
+    <LinearLayout
+        android:id="@+id/loading_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/gray_300"
+        android:gravity="center_vertical|center_horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <androidx.legacy.widget.Space
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/small" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/content_loading" />
+        </LinearLayout>
+    </LinearLayout>
 
 </FrameLayout>
