@@ -1,14 +1,15 @@
 package com.dwirandyh.jetpack.ui.tv.tvshowdetail.presentation.view
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
-import com.dwirandyh.jetpack.data.TvShowRepositoryImpl
+import com.dwirandyh.jetpack.data.remote.RemoteDataSourceImpl
+import com.dwirandyh.jetpack.data.repository.TvShowRepositoryImpl
 import com.dwirandyh.jetpack.databinding.FragmentTvShowDetailBinding
 import com.dwirandyh.jetpack.external.Result
 import com.dwirandyh.jetpack.ui.tv.tvshowdetail.presentation.viewmodel.TvShowDetailViewModel
@@ -17,7 +18,7 @@ import com.dwirandyh.jetpack.ui.tv.tvshowdetail.presentation.viewmodel.TvShowDet
 class TvShowDetailFragment : Fragment() {
 
     var viewModelFactory: TvShowDetailViewModelFactory = TvShowDetailViewModelFactory(
-        TvShowRepositoryImpl()
+        TvShowRepositoryImpl(RemoteDataSourceImpl())
     )
     lateinit var viewModel: TvShowDetailViewModel
 
@@ -38,8 +39,8 @@ class TvShowDetailFragment : Fragment() {
         viewModel = ViewModelProvider(this, viewModelFactory).get(TvShowDetailViewModel::class.java)
         setupObserver()
 
-        val movieId = args.id
-        viewModel.loadTvShow(movieId)
+        val tvId = args.id
+        viewModel.loadTvShow(tvId)
     }
 
     private fun setupObserver() {

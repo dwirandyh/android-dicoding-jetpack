@@ -37,4 +37,5 @@ object BindingAdapters {
     fun bindRating(ratingBar: RatingBar, rating: Double) {
         ratingBar.rating = rating.toFloat()
     }
+
 }

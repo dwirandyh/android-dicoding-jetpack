@@ -60,6 +60,16 @@ dependencies {
 
     implementation "com.google.android.material:material:$material_version"
 
+    //Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$interceptor_version"
+
+    // Idling Resource
+    implementation "com.android.support.test.espresso:espresso-idling-resource:$idling_resource_version"
+
+
+
     debugImplementation "androidx.fragment:fragment-testing:$fragment_version" exclude group: 'androidx.test', module: 'monitor'
 
     testImplementation "junit:junit:$junit_version"

@@ -1,18 +1,20 @@
 package com.dwirandyh.jetpack.ui.movie.movielist.presentation.view
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.dwirandyh.jetpack.data.remote.RemoteDataSourceImpl
+import com.dwirandyh.jetpack.data.repository.MovieRepositoryImpl
 import com.dwirandyh.jetpack.databinding.FragmentMovieBinding
+import com.dwirandyh.jetpack.external.EspressoIdlingResource
 import com.dwirandyh.jetpack.external.Result
-import com.dwirandyh.jetpack.data.MovieRepositoryImpl
 import com.dwirandyh.jetpack.ui.movie.movielist.presentation.viewmodel.MovieViewModel
 import com.dwirandyh.jetpack.ui.movie.movielist.presentation.viewmodel.MovieViewModelFactory
 
@@ -20,7 +22,7 @@ class MovieFragment : Fragment() {
 
     lateinit var adapter: MovieAdapter
 
-    var viewModelFactory: MovieViewModelFactory = MovieViewModelFactory(MovieRepositoryImpl())
+    var viewModelFactory: MovieViewModelFactory = MovieViewModelFactory(MovieRepositoryImpl(RemoteDataSourceImpl()))
 
     lateinit var binding: FragmentMovieBinding
     lateinit var viewModel: MovieViewModel
@@ -46,6 +48,7 @@ class MovieFragment : Fragment() {
 
     private fun setupViewModel() {
         this.viewModel = ViewModelProvider(this, this.viewModelFactory).get(MovieViewModel::class.java)
+        EspressoIdlingResource.increment()
         this.viewModel.loadMovie()
     }
 
@@ -58,6 +61,10 @@ class MovieFragment : Fragment() {
 
                     this.binding.loadingView.visibility = View.INVISIBLE
                     this.binding.movieRecycleView.visibility = View.VISIBLE
+
+                    if (!EspressoIdlingResource.getEspressoIdlingResourceForMainActivity().isIdleNow) {
+                        EspressoIdlingResource.decrement()
+                    }
                 }
                 is Result.Loading -> {
                     this.binding.loadingView.visibility = View.VISIBLE
@@ -67,6 +74,10 @@ class MovieFragment : Fragment() {
                 is Result.Failure -> {
                     this.binding.loadingView.visibility = View.INVISIBLE
                     Toast.makeText(context, "Gagal mengambil data dari server", Toast.LENGTH_SHORT).show()
+
+                    if (!EspressoIdlingResource.getEspressoIdlingResourceForMainActivity().isIdleNow) {
+                        EspressoIdlingResource.decrement()
+                    }
                 }
             }
         })
@@ -74,7 +85,7 @@ class MovieFragment : Fragment() {
 
     private fun setupAdapter() {
         this.adapter = MovieAdapter(object : MovieItemListener {
-            override fun openDetail(id: String) {
+            override fun openDetail(id: Int) {
                 view?.let {
                     val action = MovieFragmentDirections.actionMovieFragmentToMovieDetailFragment(id)
                     it.findNavController().navigate(action)

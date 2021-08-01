@@ -1,27 +1,25 @@
 package com.dwirandyh.jetpack.ui.movie.moviedetail.presentation.view
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
-import com.dwirandyh.jetpack.R
-import com.dwirandyh.jetpack.data.MovieRepositoryImpl
+import com.dwirandyh.jetpack.data.remote.RemoteDataSourceImpl
+import com.dwirandyh.jetpack.data.repository.MovieRepositoryImpl
 import com.dwirandyh.jetpack.databinding.FragmentMovieDetailBinding
-import com.dwirandyh.jetpack.domain.model.MovieModel
 import com.dwirandyh.jetpack.external.Result
-import com.dwirandyh.jetpack.external.convertToDate
 import com.dwirandyh.jetpack.ui.movie.moviedetail.presentation.viewmodel.MovieDetailViewModel
 import com.dwirandyh.jetpack.ui.movie.moviedetail.presentation.viewmodel.MovieDetailViewModelFactory
-import com.dwirandyh.jetpack.ui.movie.movielist.presentation.viewmodel.MovieViewModelFactory
-import java.util.*
 
 class MovieDetailFragment : Fragment() {
 
-    var viewModelFactory: MovieDetailViewModelFactory = MovieDetailViewModelFactory(MovieRepositoryImpl())
+    var viewModelFactory: MovieDetailViewModelFactory = MovieDetailViewModelFactory(
+        MovieRepositoryImpl(RemoteDataSourceImpl())
+    )
     lateinit var viewModel: MovieDetailViewModel
 
     lateinit var binding: FragmentMovieDetailBinding

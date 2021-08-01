@@ -2,11 +2,11 @@ package com.dwirandyh.jetpack.ui.tv
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
+import com.dwirandyh.jetpack.domain.model.TvShowModel
+import com.dwirandyh.jetpack.domain.repository.TvShowRepository
 import com.dwirandyh.jetpack.external.Result
 import com.dwirandyh.jetpack.external.TestCoroutineRule
 import com.dwirandyh.jetpack.external.convertToDate
-import com.dwirandyh.jetpack.domain.model.TvShowModel
-import com.dwirandyh.jetpack.domain.repository.TvShowRepository
 import com.dwirandyh.jetpack.ui.tv.tvshowlist.presentation.viewmodel.TvShowViewModel
 import com.nhaarman.mockitokotlin2.times
 import com.nhaarman.mockitokotlin2.verify
@@ -59,7 +59,7 @@ class TvShowViewModelTest {
             val tvShowList = ArrayList<TvShowModel>()
             tvShowList.add(
                 TvShowModel(
-                    "idTest",
+                    0,
                     "titleTest",
                     4.0,
                     "2019-03-19".convertToDate("YYYY-mm-dd"),

@@ -2,27 +2,27 @@ package com.dwirandyh.jetpack.ui.movie
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
+import com.dwirandyh.jetpack.domain.model.MovieModel
+import com.dwirandyh.jetpack.domain.repository.MovieRepository
 import com.dwirandyh.jetpack.external.Result
 import com.dwirandyh.jetpack.external.TestCoroutineRule
 import com.dwirandyh.jetpack.external.convertToDate
-import com.dwirandyh.jetpack.domain.model.MovieModel
-import com.dwirandyh.jetpack.domain.repository.MovieRepository
 import com.dwirandyh.jetpack.ui.movie.movielist.presentation.viewmodel.MovieViewModel
 import com.nhaarman.mockitokotlin2.times
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import org.junit.Test
-import org.junit.Assert.*
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Rule
+import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.ArgumentCaptor
 import org.mockito.Captor
 import org.mockito.Mock
 import org.mockito.MockitoAnnotations
 import org.mockito.junit.MockitoJUnitRunner
-import kotlin.collections.ArrayList
 
 @RunWith(MockitoJUnitRunner::class)
 class MovieViewModelTest {
@@ -59,7 +59,7 @@ class MovieViewModelTest {
             val movieList = ArrayList<MovieModel>()
             movieList.add(
                 MovieModel(
-                    "idTest",
+                    1,
                     "titleTest",
                     4.0,
                     "2019-03-19".convertToDate("YYYY-mm-dd"),
@@ -111,10 +111,10 @@ class MovieViewModelTest {
     @Test
     fun loadMovieError() {
         testCoroutineRule.runBlockingTest {
-            val failurResult = Result.Failure("Failed")
+            val failureResult = Result.Failure("Failed")
             // Given
             whenever(movieRepository.getMovie()).then {
-                return@then failurResult
+                return@then failureResult
             }
 
             // When
@@ -126,7 +126,7 @@ class MovieViewModelTest {
 
             val movieListValues = movieListArgumentCaptor.allValues
             assertEquals(Result.Loading, movieListValues[0])
-            assertEquals(failurResult, movieListValues[1])
+            assertEquals(failureResult, movieListValues[1])
         }
     }
 }

@@ -33,7 +33,7 @@
         tools:layout="@layout/fragment_movie_detail">
         <argument
             android:name="id"
-            app:argType="string" />
+            app:argType="integer" />
     </fragment>
 
     <fragment
@@ -43,6 +43,6 @@
         tools:layout="@layout/fragment_tv_show_detail">
         <argument
             android:name="id"
-            app:argType="string" />
+            app:argType="integer" />
     </fragment>
 </navigation>

@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.dwirandyh.jetpack.databinding.ItemsTvShowBinding
 import com.dwirandyh.jetpack.domain.model.TvShowModel
-import com.dwirandyh.jetpack.ui.movie.movielist.presentation.view.MovieItemListener
 
 class TvShowAdapter(val listener: TvShowItemListener) : RecyclerView.Adapter<TvShowAdapter.TvShowViewHolder>() {
 

@@ -1,9 +1,7 @@
 package com.dwirandyh.jetpack.external
 
-import com.dwirandyh.jetpack.external.convertToDate
+import org.junit.Assert.assertEquals
 import org.junit.Test
-
-import org.junit.Assert.*
 
 class StringExtensionTest {
 
