@@ -1,7 +1,8 @@
-package com.dwirandyh.jetpack.ui.movie
+package com.dwirandyh.jetpack.ui.movie.movielist
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
+import com.dwirandyh.jetpack.domain.model.MovieDetailModel
 import com.dwirandyh.jetpack.domain.model.MovieModel
 import com.dwirandyh.jetpack.domain.repository.MovieRepository
 import com.dwirandyh.jetpack.external.Result
@@ -75,6 +76,8 @@ class MovieViewModelTest {
             viewModel.loadMovie()
 
             // Then
+            verify(movieRepository).getMovie()
+
             verify(movieListObserver, times(2))
                 .onChanged(movieListArgumentCaptor.capture())
 
@@ -98,6 +101,8 @@ class MovieViewModelTest {
             viewModel.loadMovie()
 
             // Then
+            verify(movieRepository).getMovie()
+
             verify(movieListObserver, times(2))
                 .onChanged(movieListArgumentCaptor.capture())
 
@@ -121,6 +126,8 @@ class MovieViewModelTest {
             viewModel.loadMovie()
 
             // Then
+            verify(movieRepository).getMovie()
+
             verify(movieListObserver, times(2))
                 .onChanged(movieListArgumentCaptor.capture())
 
@@ -129,4 +136,5 @@ class MovieViewModelTest {
             assertEquals(failureResult, movieListValues[1])
         }
     }
+
 }

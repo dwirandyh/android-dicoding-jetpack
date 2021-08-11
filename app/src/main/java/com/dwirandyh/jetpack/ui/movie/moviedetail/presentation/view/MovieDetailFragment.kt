@@ -11,6 +11,7 @@ import androidx.navigation.fragment.navArgs
 import com.dwirandyh.jetpack.data.remote.RemoteDataSourceImpl
 import com.dwirandyh.jetpack.data.repository.MovieRepositoryImpl
 import com.dwirandyh.jetpack.databinding.FragmentMovieDetailBinding
+import com.dwirandyh.jetpack.external.EspressoIdlingResource
 import com.dwirandyh.jetpack.external.Result
 import com.dwirandyh.jetpack.ui.movie.moviedetail.presentation.viewmodel.MovieDetailViewModel
 import com.dwirandyh.jetpack.ui.movie.moviedetail.presentation.viewmodel.MovieDetailViewModelFactory
@@ -41,6 +42,7 @@ class MovieDetailFragment : Fragment() {
 
         val movieId = args.id
         viewModel.loadMovie(movieId)
+        EspressoIdlingResource.increment()
     }
 
     private fun setupObserver() {
@@ -50,6 +52,10 @@ class MovieDetailFragment : Fragment() {
                     binding.movie = result.data
                     binding.viewContentContainer.visibility = View.VISIBLE
                     binding.loadingView.root.visibility = View.INVISIBLE
+
+                    if (!EspressoIdlingResource.getEspressoIdlingResourceForMainActivity().isIdleNow) {
+                        EspressoIdlingResource.decrement()
+                    }
                 }
                 is Result.Loading -> {
                     binding.viewContentContainer.visibility = View.INVISIBLE
@@ -59,6 +65,10 @@ class MovieDetailFragment : Fragment() {
                     binding.viewContentContainer.visibility = View.INVISIBLE
                     binding.loadingView.root.visibility = View.INVISIBLE
                     Toast.makeText(context, "Gagal mengambil data dari server", Toast.LENGTH_SHORT).show()
+
+                    if (!EspressoIdlingResource.getEspressoIdlingResourceForMainActivity().isIdleNow) {
+                        EspressoIdlingResource.decrement()
+                    }
                 }
             }
         })

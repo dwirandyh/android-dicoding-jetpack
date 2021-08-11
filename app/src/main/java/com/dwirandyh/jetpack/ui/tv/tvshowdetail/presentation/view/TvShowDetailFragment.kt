@@ -11,6 +11,7 @@ import androidx.navigation.fragment.navArgs
 import com.dwirandyh.jetpack.data.remote.RemoteDataSourceImpl
 import com.dwirandyh.jetpack.data.repository.TvShowRepositoryImpl
 import com.dwirandyh.jetpack.databinding.FragmentTvShowDetailBinding
+import com.dwirandyh.jetpack.external.EspressoIdlingResource
 import com.dwirandyh.jetpack.external.Result
 import com.dwirandyh.jetpack.ui.tv.tvshowdetail.presentation.viewmodel.TvShowDetailViewModel
 import com.dwirandyh.jetpack.ui.tv.tvshowdetail.presentation.viewmodel.TvShowDetailViewModelFactory
@@ -41,6 +42,7 @@ class TvShowDetailFragment : Fragment() {
 
         val tvId = args.id
         viewModel.loadTvShow(tvId)
+        EspressoIdlingResource.increment()
     }
 
     private fun setupObserver() {
@@ -50,6 +52,10 @@ class TvShowDetailFragment : Fragment() {
                     binding.tvShow = result.data
                     binding.viewContentContainer.visibility = View.VISIBLE
                     binding.loadingView.root.visibility = View.INVISIBLE
+
+                    if (!EspressoIdlingResource.getEspressoIdlingResourceForMainActivity().isIdleNow) {
+                        EspressoIdlingResource.decrement()
+                    }
                 }
                 is Result.Loading -> {
                     binding.viewContentContainer.visibility = View.INVISIBLE
@@ -59,6 +65,10 @@ class TvShowDetailFragment : Fragment() {
                     binding.viewContentContainer.visibility = View.INVISIBLE
                     binding.loadingView.root.visibility = View.INVISIBLE
                     Toast.makeText(context, "Gagal mengambil data dari server", Toast.LENGTH_SHORT).show()
+
+                    if (!EspressoIdlingResource.getEspressoIdlingResourceForMainActivity().isIdleNow) {
+                        EspressoIdlingResource.decrement()
+                    }
                 }
             }
         })

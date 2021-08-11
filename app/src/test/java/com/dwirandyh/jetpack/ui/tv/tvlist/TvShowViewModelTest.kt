@@ -1,4 +1,4 @@
-package com.dwirandyh.jetpack.ui.tv
+package com.dwirandyh.jetpack.ui.tv.tvlist
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
@@ -76,6 +76,8 @@ class TvShowViewModelTest {
             viewModel.loadTvShow()
 
             // Then
+            verify(tvShowRepository).getTvShowList()
+
             verify(tvShowListObserver, times(2))
                 .onChanged(tvShowListArgumentCaptor.capture())
 
@@ -99,6 +101,8 @@ class TvShowViewModelTest {
             viewModel.loadTvShow()
 
             // Then
+            verify(tvShowRepository).getTvShowList()
+
             verify(tvShowListObserver, times(2))
                 .onChanged(tvShowListArgumentCaptor.capture())
 
@@ -122,6 +126,8 @@ class TvShowViewModelTest {
             viewModel.loadTvShow()
 
             // Then
+            verify(tvShowRepository).getTvShowList()
+
             verify(tvShowListObserver, times(2))
                 .onChanged(tvShowListArgumentCaptor.capture())
 

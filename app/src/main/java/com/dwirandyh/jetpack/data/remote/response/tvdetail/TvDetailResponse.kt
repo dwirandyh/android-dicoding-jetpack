@@ -16,8 +16,8 @@ data class TvDetailResponse(
     @field:SerializedName("vote_average")
     var voteAverage: Double? = null,
 
-    @field:SerializedName("release_date")
-    var releaseDate: String? = null,
+    @field:SerializedName("last_air_date")
+    var lastAirDate: String? = null,
 
     @field:SerializedName("poster_path")
     var posterPath: String? = null,

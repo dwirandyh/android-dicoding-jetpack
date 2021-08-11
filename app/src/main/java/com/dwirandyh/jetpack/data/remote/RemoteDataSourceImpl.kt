@@ -35,7 +35,7 @@ class RemoteDataSourceImpl : RemoteDataSource {
             movieDetail.originalTitle ?: "",
             movieDetail.voteAverage ?: 0.0,
             (movieDetail.releaseDate ?: "0000-00-00").convertToDate("yyyy-MM-dd"),
-            Constant.POSTER_URL + movieDetail.posterPath ?: "",
+            Constant.POSTER_URL + movieDetail.posterPath,
             "",
             movieDetail.overview ?: "",
             movieDetail.genreIds?.map { it.name }?.toCollection(ArrayList()) ?: ArrayList()
@@ -68,7 +68,7 @@ class RemoteDataSourceImpl : RemoteDataSource {
             tvDetail.id ?: 0,
             tvDetail.originalName ?: "",
             tvDetail.voteAverage ?: 0.0,
-            (tvDetail.releaseDate ?: "0000-00-00").convertToDate("yyyy-MM-dd"),
+            (tvDetail.lastAirDate ?: "0000-00-00").convertToDate("yyyy-MM-dd"),
             Constant.POSTER_URL + tvDetail.posterPath,
             "",
             tvDetail.overview ?: ""
